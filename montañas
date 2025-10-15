@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa Interactivo de Montañas de Costa Rica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f8ff;
+    }
+    #map { 
+      height: 80vh;
+      width: 100%;
+    }
+    h1 {
+      text-align: center;
+      color: #2e8b57;
+      font-size: 32px;
+      margin-top: 20px;
+    }
+    .popup {
+      font-size: 18px;
+      color: #333;
+      text-align: center;
+    }
+    .quiz {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #333;
+    }
+    .question {
+      font-size: 20px;
+      font-weight: bold;
+      color: #008080;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Montañas de Costa Rica</h1>
+  <div id="map"></div>
+
+  <!-- Google Maps API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+  
+  <script>
+    var map;
+    
+    function initMap() {
+      // Configurar el mapa centrado en Costa Rica
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 9.7489, lng: -83.7534},
+        zoom: 7
+      });
+
+      // Datos de las montañas
+      var montanas = [
+        { 
+          nombre: 'Volcán Arenal', 
+          lat: 10.4624, 
+          lon: -84.7037, 
+          descripcion: 'Es un volcán activo muy popular. Tiene una forma cónica perfecta.',
+          imagen: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Volcan_Arenal.jpg',
+          quiz: {
+            pregunta: '¿Es el Volcán Arenal activo?',
+            respuestas: ['Sí', 'No'],
+            respuesta_correcta: 'Sí'
+          }
+        },
+        { 
+          nombre: 'Volcán Poás', 
+          lat: 10.2115, 
+          lon: -84.2332, 
+          descripcion: 'Un volcán con un cráter impresionante, uno de los más grandes del mundo.',
+          imagen: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Po%C3%A1s_volcano_2011.jpg',
+          quiz: {
+            pregunta: '¿Está el cráter del Volcán Poás lleno de agua?',
+            respuestas: ['Sí', 'No'],
+            respuesta_correcta: 'Sí'
+          }
+        },
+        { 
+          nombre: 'Volcán Irazú', 
+          lat: 9.9343, 
+          lon: -83.8510, 
+          descripcion: 'El volcán más alto de Costa Rica, desde su cima puedes ver el Océano Pacífico y el Atlántico.',
+          imagen: 'https://upload.wikimedia.org/wikipedia/commons/d/d1/Volc%C3%A1n_Iraz%C3%BA_%28Costa_Rica%29.jpg',
+          quiz: {
+            pregunta: '¿Cuánto mide el Volcán Irazú?',
+            respuestas: ['3,432 metros', '2,500 metros'],
+            respuesta_correcta: '3,432 metros'
+          }
+        },
+        { 
+          nombre: 'Monte Chirripó', 
+          lat: 9.5947, 
+          lon: -82.9306, 
+          descripcion: 'La montaña más alta de Costa Rica, ideal para senderismo.',
+          imagen: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Monte_Chirrip%C3%B3_%28Costa_Rica%29.jpg',
+          quiz: {
+            pregunta: '¿Es el Monte Chirripó la montaña más alta de Costa Rica?',
+            respuestas: ['Sí', 'No'],
+            respuesta_correcta: 'Sí'
+          }
+        }
+      ];
+
+      // Crear marcadores para cada montañ
