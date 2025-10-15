@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Montañas de Costa Rica</title>
+    <style>
+        /* Asegúrate de que el mapa tenga un tamaño visible */
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mapa de las Montañas de Costa Rica</h1>
+    <div id="map"></div>
+
+    <!-- Inserta tu clave de API de Google Maps aquí -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap" async defer></script>
+
+    <script>
+        // Inicializa el mapa
+        function initMap() {
+            // Configuración inicial del mapa centrado en Costa Rica
+            var options = {
+                zoom: 7,
+                center: { lat: 9.7489, lng: -83.7534 } // Centro de Costa Rica
+            };
+            
+            var map = new google.maps.Map(document.getElementById('map'), options);
+
+            // Lista de montañas en Costa Rica (con nombre y coordenadas)
+            var montanas = [
+                { nombre: 'Volcán Arenal', lat: 10.4625, lng: -84.7031 },
+                { nombre: 'Volcán Poás', lat: 10.2000, lng: -84.2236 },
+                { nombre: 'Volcán Irazú', lat: 9.9319, lng: -83.8550 },
+                { nombre: 'Volcán Rincón de la Vieja', lat: 10.7117, lng: -85.4247 },
+                { nombre: 'Volcán Turrialba', lat: 9.9347, lng: -83.7677 },
+                { nombre: 'Volcán Barva', lat: 10.1367, lng: -84.1410 }
+            ];
+
+            // Añadir marcadores para cada montaña
+            montanas.forEach(function(montana) {
+                new google.maps.Marker({
+                    position: { lat: montana.lat, lng: montana.lng },
+                    map: map,
+                    title: montana.nombre
+                });
+            });
+        }
+    </script>
+</body>
+</html>
